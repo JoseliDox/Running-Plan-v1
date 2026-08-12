@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<title>Rumbo al 5K · 10 oct 2026</title>
+<style>
+:root{
+  --ink:#12141c;
+  --surface:#1b1e29;
+  --surface-2:#232735;
+  --surface-3:#2a2f40;
+  --chalk:#f4f2ec;
+  --chalk-dim:#9498a8;
+  --line:#2c3040;
+  --ember:#ff6a3d;
+  --ember-dim:#ff6a3d33;
+  --moss:#8fae7a;
+  --moss-dim:#8fae7a2e;
+  --sky:#5fa8d3;
+  --sky-dim:#5fa8d32e;
+  --gold:#f0b429;
+  --gold-dim:#f0b4292e;
+  --race:#ff3d68;
+  --race-dim:#ff3d6830;
+  --radius:16px;
+  font-size:16px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html,body{margin:0;padding:0;background:var(--ink);color:var(--chalk);}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  padding-bottom:84px;
+  min-height:100vh;
+}
+.mono{font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Roboto Mono",monospace;}
+.display{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-weight:900;
+  text-transform:uppercase;
+  letter-spacing:0.02em;
+}
+h1,h2,h3{margin:0;}
+a{color:inherit;}
+button{font-family:inherit;cursor:pointer;}
+
+/* ---------- top header ---------- */
+.topbar{
+  padding:22px 18px 16px;
+  background:linear-gradient(180deg,#171a24 0%, var(--ink) 100%);
+  border-bottom:1px solid var(--line);
+  position:sticky;top:0;z-index:20;
+}
+.topbar .eyebrow{
+  font-size:11px;letter-spacing:0.18em;color:var(--chalk-dim);
+  text-transform:uppercase;font-weight:700;margin-bottom:4px;
+}
+.topbar h1{font-size:22px;letter-spacing:0.01em;}
+.topbar h1 span{color:var(--ember);}
+
+/* ---------- tabs ---------- */
+main{padding:16px 14px 8px;max-width:640px;margin:0 auto;}
+.tabbar{
+  position:fixed;bottom:0;left:0;right:0;z-index:30;
+  display:flex;background:var(--surface);border-top:1px solid var(--line);
+  padding:6px 4px calc(6px + env(safe-area-inset-bottom));
+}
+.tabbtn{
+  flex:1;background:none;border:none;color:var(--chalk-dim);
+  display:flex;flex-direction:column;align-items:center;gap:2px;
+  padding:8px 2px;border-radius:12px;font-size:10.5px;font-weight:700;
+  letter-spacing:0.03em;text-transform:uppercase;
+}
+.tabbtn .ic{font-size:19px;}
+.tabbtn.active{color:var(--ember);background:var(--ember-dim);}
+.tabpanel{display:none;}
+.tabpanel.active{display:block;animation:fadein .18s ease;}
+@keyframes fadein{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:none;}}
+
+/* ---------- ring countdown (signature element) ---------- */
+.ringwrap{display:flex;align-items:center;gap:18px;background:var(--surface);
+  border:1px solid var(--line);border-radius:var(--radius);padding:16px;margin-bottom:14px;}
+.ring{width:96px;height:96px;flex:none;}
+.ring circle{fill:none;stroke-width:8;}
+.ring .track{stroke:var(--surface-3);}
+.ring .prog{stroke:var(--ember);stroke-linecap:round;transform:rotate(-90deg);transform-origin:50% 50%;
+  transition:stroke-dashoffset .4s ease;}
+.ringtext{position:relative;}
+.ringnum{font-size:26px;}
+.ringlabel{font-size:11px;color:var(--chalk-dim);text-transform:uppercase;letter-spacing:.08em;}
+.ringmeta{flex:1;}
+.ringmeta .goal{font-size:13px;color:var(--chalk-dim);margin-top:4px;}
+.ringmeta .goal b{color:var(--chalk);font-weight:700;}
+
+/* ---------- cards ---------- */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:16px;margin-bottom:14px;}
+.card h2{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--chalk-dim);margin-bottom:10px;}
+
+/* stat grid */
+.statgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.stat{background:var(--surface-2);border-radius:12px;padding:12px;}
+.stat .v{font-size:20px;font-weight:800;}
+.stat .l{font-size:10.5px;color:var(--chalk-dim);text-transform:uppercase;letter-spacing:.05em;margin-top:2px;}
+
+/* weight editable */
+.weightrow{display:flex;align-items:center;justify-content:space-between;gap:8px;}
+.weightrow input{
+  width:84px;background:var(--surface-3);border:1px solid var(--line);border-radius:8px;
+  color:var(--chalk);padding:8px;font-size:15px;text-align:center;font-family:inherit;
+}
+
+/* ---------- session card ---------- */
+.km-post{display:flex;gap:12px;}
+.post-stick{width:6px;border-radius:4px;flex:none;}
+.post-stick.type-running{background:var(--ember);}
+.post-stick.type-hipertrofia{background:var(--moss);}
+.post-stick.type-rest{background:var(--chalk-dim);opacity:.5;}
+.post-stick.type-cardio{background:var(--sky);}
+.post-stick.type-test{background:var(--gold);}
+.post-stick.type-carrera{background:var(--race);}
+
+.sess{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:14px;margin-bottom:12px;position:relative;overflow:hidden;
+}
+.sess.done{opacity:.62;}
+.sess.done .sesstitle{text-decoration:line-through;}
+.sess .tag{
+  display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:800;
+  text-transform:uppercase;letter-spacing:.06em;padding:3px 8px;border-radius:20px;margin-bottom:8px;
+}
+.tag.type-running{background:var(--ember-dim);color:var(--ember);}
+.tag.type-hipertrofia{background:var(--moss-dim);color:var(--moss);}
+.tag.type-rest{background:var(--surface-3);color:var(--chalk-dim);}
+.tag.type-cardio{background:var(--sky-dim);color:var(--sky);}
+.tag.type-test{background:var(--gold-dim);color:var(--gold);}
+.tag.type-carrera{background:var(--race-dim);color:var(--race);}
+
+.sesshead{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;}
+.sesstitle{font-size:16px;font-weight:800;line-height:1.25;}
+.sessdate{font-size:11px;color:var(--chalk-dim);text-transform:uppercase;letter-spacing:.04em;margin-top:2px;}
+.sessmeta{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 4px;}
+.chip{background:var(--surface-2);border-radius:8px;padding:5px 9px;font-size:12px;color:var(--chalk-dim);}
+.chip b{color:var(--chalk);font-weight:700;}
+.sessblock{margin-top:8px;font-size:13.5px;line-height:1.5;color:#d6d8e0;}
+.sessblock b{color:var(--chalk);}
+.sessnote{margin-top:8px;font-size:12.5px;color:var(--chalk-dim);font-style:italic;}
+
+.checkbtn{
+  flex:none;width:30px;height:30px;border-radius:50%;border:2px solid var(--line);
+  background:var(--surface-2);display:flex;align-items:center;justify-content:center;
+  font-size:15px;color:transparent;
+}
+.checkbtn.checked{background:var(--ember);border-color:var(--ember);color:#20120a;}
+
+.details{margin-top:10px;}
+.details summary{cursor:pointer;font-size:12.5px;color:var(--ember);font-weight:700;list-style:none;}
+.details summary::-webkit-details-marker{display:none;}
+.details summary:after{content:" ▾";}
+.details[open] summary:after{content:" ▴";}
+
+.logbox{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line);}
+.logrow{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:8px;}
+.logrow.full{grid-template-columns:1fr;}
+.logrow label{font-size:10.5px;color:var(--chalk-dim);text-transform:uppercase;letter-spacing:.04em;display:block;margin-bottom:4px;}
+.logrow input, .logrow select, .logrow textarea{
+  width:100%;background:var(--surface-3);border:1px solid var(--line);border-radius:8px;
+  color:var(--chalk);padding:8px;font-size:14px;font-family:inherit;
+}
+.logrow textarea{resize:vertical;min-height:44px;}
+.paceOut{font-size:12px;color:var(--gold);margin-top:2px;}
+
+.bigbtn{
+  width:100%;border:none;border-radius:12px;padding:13px;font-size:14px;font-weight:800;
+  text-transform:uppercase;letter-spacing:.04em;background:var(--ember);color:#20120a;margin-top:6px;
+}
+.bigbtn.secondary{background:var(--surface-3);color:var(--chalk);}
+.bigbtn.done{background:var(--surface-3);color:var(--moss);}
+
+/* week header */
+.weekhead{
+  display:flex;justify-content:space-between;align-items:center;
+  margin:22px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--line);
+}
+.weekhead .wk{font-size:11px;color:var(--chalk-dim);text-transform:uppercase;letter-spacing:.08em;}
+.weekhead .wf{font-size:14px;font-weight:800;margin-top:2px;}
+.weekhead .wd{font-size:11px;color:var(--chalk-dim);}
+.weekhead:first-child{margin-top:0;}
+
+/* progress tab */
+.chartcard canvas{width:100%;height:150px;display:block;}
+.legend{display:flex;gap:14px;margin-top:6px;font-size:11px;color:var(--chalk-dim);}
+.legend span{display:inline-flex;align-items:center;gap:5px;}
+.dot{width:8px;height:8px;border-radius:50%;display:inline-block;}
+
+/* guide accordion */
+.acc{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);margin-bottom:10px;overflow:hidden;}
+.acc summary{padding:14px 16px;font-weight:800;font-size:14px;cursor:pointer;list-style:none;display:flex;justify-content:space-between;}
+.acc summary::-webkit-details-marker{display:none;}
+.acc summary:after{content:"+";color:var(--ember);font-size:18px;}
+.acc[open] summary:after{content:"−";}
+.acc .body{padding:0 16px 16px;font-size:13.5px;line-height:1.6;color:#d6d8e0;}
+.acc .body p{margin:0 0 10px;}
+.acc .body ul{margin:0 0 10px;padding-left:18px;}
+.acc .body li{margin-bottom:6px;}
+.acc .body b{color:var(--chalk);}
+.rulepill{display:inline-block;background:var(--surface-2);border-radius:8px;padding:8px 10px;margin-bottom:8px;font-size:13px;width:100%;}
+.rulepill b{color:var(--gold);}
+
+.empty{text-align:center;color:var(--chalk-dim);font-size:13px;padding:30px 10px;}
+.subtitle{font-size:12.5px;color:var(--chalk-dim);margin:-6px 0 14px;line-height:1.5;}
+.toast{
+  position:fixed;bottom:96px;left:50%;transform:translateX(-50%) translateY(20px);
+  background:var(--surface-3);border:1px solid var(--line);color:var(--chalk);
+  padding:10px 16px;border-radius:30px;font-size:12.5px;font-weight:700;opacity:0;
+  transition:all .25s ease;z-index:50;pointer-events:none;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="eyebrow">Plan de entrenamiento · 12 ago – 10 oct 2026</div>
+  <h1>Rumbo al <span>5K</span></h1>
+</div>
+
+<main>
+
+  <!-- ===================== TAB: HOY ===================== -->
+  <section class="tabpanel active" id="tab-hoy">
+    <div class="ringwrap">
+      <svg class="ring" viewBox="0 0 100 100">
+        <circle class="track" cx="50" cy="50" r="42"></circle>
+        <circle class="prog" id="ringProg" cx="50" cy="50" r="42" stroke-dasharray="264" stroke-dashoffset="264"></circle>
+      </svg>
+      <div class="ringmeta">
+        <div class="ringnum display" id="daysLeft">--</div>
+        <div class="ringlabel">días para la carrera</div>
+        <div class="goal">Meta: <b>5K · 10 oct 2026</b></div>
+        <div class="goal" id="paceGoalLine">Ritmo objetivo: <b>a determinar</b></div>
+      </div>
+    </div>
+
+    <div id="todayCard"></div>
+    <div id="nextCard"></div>
+
+    <div class="card">
+      <h2>Progreso hacia el 5K</h2>
+      <div class="statgrid">
+        <div class="stat"><div class="v" id="statCompleted">0/0</div><div class="l">Sesiones hechas</div></div>
+        <div class="stat"><div class="v" id="statKm">0 km</div><div class="l">Km acumulados</div></div>
+        <div class="stat"><div class="v" id="statTime">0 h</div><div class="l">Tiempo corriendo</div></div>
+        <div class="stat"><div class="v" id="statPace">--</div><div class="l">Mejor ritmo</div></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Tu peso</h2>
+      <div class="weightrow">
+        <div>
+          <div class="chip">Inicial: <b>96,85 kg</b></div>
+          <div class="chip" style="margin-top:6px;">Objetivo: <b>~90 kg</b></div>
+        </div>
+        <div>
+          <label style="font-size:10.5px;color:var(--chalk-dim);display:block;margin-bottom:5px;text-transform:uppercase;">Peso actual (kg)</label>
+          <input type="number" step="0.05" id="weightInput" inputmode="decimal">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== TAB: CALENDARIO ===================== -->
+  <section class="tabpanel" id="tab-calendario">
+    <p class="subtitle">Todas las semanas del plan, del 12 de agosto al 10 de octubre. Marca cada sesión al completarla y registra tus datos si quieres.</p>
+    <div id="calendarList"></div>
+  </section>
+
+  <!-- ===================== TAB: PROGRESO ===================== -->
+  <section class="tabpanel" id="tab-progreso">
+    <div class="card chartcard">
+      <h2>Kilómetros por semana</h2>
+      <canvas id="chartKm"></canvas>
+    </div>
+    <div class="card chartcard">
+      <h2>Minutos corriendo por semana</h2>
+      <canvas id="chartTime"></canvas>
+    </div>
+    <div class="card chartcard">
+      <h2>Evolución del ritmo (min/km)</h2>
+      <canvas id="chartPace"></canvas>
+      <div class="subtitle" style="margin-top:8px;">Cuanto más bajo, más rápido. Se dibuja con las sesiones que registres con distancia y tiempo.</div>
+    </div>
+    <div class="card chartcard">
+      <h2>Evolución del peso (kg)</h2>
+      <canvas id="chartWeight"></canvas>
+    </div>
+  </section>
+
+  <!-- ===================== TAB: GUÍA ===================== -->
+  <section class="tabpanel" id="tab-guia">
+    <p class="subtitle">Reglas del plan: cómo interpretar la intensidad, qué hacer ante imprevistos, y tu estrategia para el día de la carrera.</p>
+
+    <details class="acc" open>
+      <summary>Cómo identificar cada intensidad</summary>
+      <div class="body">
+        <div class="rulepill"><b>Recuperación (RPE 1-3):</b> caminar rápido o trote muy suave. Hablarías sin ningún esfuerzo.</div>
+        <div class="rulepill"><b>Fácil (RPE 3-5):</b> tu ritmo base. Puedes mantener frases completas sin quedarte sin aire.</div>
+        <div class="rulepill"><b>Moderado (RPE 5-6):</b> notas el esfuerzo, hablas con frases más cortas.</div>
+        <div class="rulepill"><b>Umbral (RPE 7-8):</b> esfuerzo fuerte pero sostenible 20-40 min. Solo palabras sueltas.</div>
+        <div class="rulepill"><b>Ritmo 5K (RPE 8-9):</b> esfuerzo intenso, sostenible unos 25-35 min a tu nivel actual. Conversación prácticamente imposible.</div>
+        <p>Hasta que tengas datos de los tests, guíate sobre todo por el RPE y la conversación, no por el ritmo. Los tests de las semanas 4 y 6 te darán ritmos de referencia reales.</p>
+      </div>
+    </details>
+
+    <details class="acc">
+      <summary>Reglas ante la condromalacia rotuliana</summary>
+      <div class="body">
+        <p><b>Estás asintomático ahora mismo — el objetivo es que sigas así.</b> Estas son tus reglas de actuación:</p>
+        <ul>
+          <li><b>Molestia leve (1-3/10) que desaparece al calentar y no empeora durante la sesión:</b> puedes continuar con normalidad. Aplica hielo si quieres después y vigila cómo sigue al día siguiente.</li>
+          <li><b>Molestia que aparece y va a más durante la sesión:</b> para la sesión ahí. Sustituye el resto por bici o elíptica sin dolor, o camina el resto si tampoco eso es cómodo.</li>
+          <li><b>Molestia que persiste más de 24-48h después de entrenar:</b> reduce el volumen de running de esa semana un 30-50% y cambia una sesión de running por bici/elíptica.</li>
+          <li><b>Dolor agudo, hinchazón, chasquidos con dolor o sensación de bloqueo:</b> para el running por completo y consulta con un fisioterapeuta o traumatólogo antes de retomar.</li>
+          <li><b>Superficies:</b> prioriza tierra, pista de atletismo o cinta con amortiguación sobre asfalto, especialmente en las sesiones de calidad. Evita bajadas pronunciadas.</li>
+          <li><b>Piernas en el gimnasio:</b> mantén el trabajo de fuerza, pero si notas fatiga o molestia acumulada, reduce antes el volumen de ejercicios de alto impacto en rodilla (extensión de cuádriceps pesada, saltos) que las sentadillas o prensa a rango cómodo.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="acc">
+      <summary>Qué hacer si pasa algo (sesión saltada, cansancio, calor...)</summary>
+      <div class="body">
+        <ul>
+          <li><b>Te saltas una sesión:</b> no la dupliques ni la recuperes al día siguiente. Simplemente retoma el plan en la siguiente sesión programada.</li>
+          <li><b>Agujetas o cansancio muscular por hipertrofia:</b> convierte la sesión de running en trote muy suave o cinta a paso ligero, bajando RPE 1-2 puntos.</li>
+          <li><b>Duermes mal o estás muy cansado:</b> baja la sesión un escalón de intensidad (una de calidad pasa a fácil; una fácil puede pasar a descanso activo).</li>
+          <li><b>Estás enfermo (fiebre, malestar general):</b> descansa por completo. No sigas el plan hasta llevar 24-48h sin síntomas, y retoma un escalón por debajo de donde lo dejaste.</li>
+          <li><b>No puedes salir a correr:</b> sustituye por cinta con la misma duración e intensidad aproximada.</li>
+          <li><b>Hace mucho calor:</b> reduce el ritmo, no la duración objetivo; hidrátate antes/durante, y si es posible mueve la sesión a primera hora del día o sustitúyela por cinta con ventilación/aire.</li>
+          <li><b>Molestia de rodilla:</b> aplica las reglas específicas de condromalacia de arriba.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="acc">
+      <summary>Cuándo pasar de 3 a 4 días de running</summary>
+      <div class="body">
+        <p>No lo hagas por sistema. Pasa a 4 días solo cuando cumplas <b>todos</b> estos criterios (revísalo en la semana 5-6):</p>
+        <ul>
+          <li>Puedes correr de forma continua al menos 20-25 minutos sin parar.</li>
+          <li>Cero molestias de rodilla en las últimas 2 semanas.</li>
+          <li>Te recuperas bien entre sesiones: sin fatiga acumulada, buen sueño.</li>
+          <li>Llevas al menos 4-5 semanas completadas del plan.</li>
+          <li>Tu rendimiento en el gimnasio no está empeorando por el running.</li>
+        </ul>
+        <p>Si cumples todo, añade una 4ª sesión corta y fácil (15-20 min) sin quitar ningún día de hipertrofia. Si no cumples alguno, mantén 3 días — no pasa nada, seguirás progresando igual.</p>
+      </div>
+    </details>
+
+    <details class="acc">
+      <summary>Estrategia de carrera: 3 escenarios</summary>
+      <div class="body">
+        <p><b>Escenario A — Llegas manteniendo ~6:30/km con buenas sensaciones en los tests:</b></p>
+        <ul>
+          <li>Km 0-1: arranca controlado, 6:40-6:45/km (más lento de lo que crees).</li>
+          <li>Km 1-3: asienta el ritmo objetivo, 6:25-6:30/km.</li>
+          <li>Km 3-4: mantén 6:30/km, es donde más se sufre.</li>
+          <li>Km 4-5: si te encuentras bien, aprieta hasta el final.</li>
+        </ul>
+        <p><b>Escenario B — 6:30/km sigue resultando exigente, tu ritmo real está más cerca de 6:45-7:15/km:</b></p>
+        <ul>
+          <li>Corre el ritmo que hayas confirmado en tus tests, no el objetivo original.</li>
+          <li>Sal aún más conservador los primeros 1-2 km y deja el esfuerzo fuerte para el tramo final.</li>
+          <li>Terminar fuerte y con buenas sensaciones vale más que un número concreto.</li>
+        </ul>
+        <p><b>Escenario C — La progresión ha sido más lenta de lo esperado:</b></p>
+        <ul>
+          <li>Plantea la carrera con estrategia caminar-correr si hace falta (por ejemplo, correr 4 min / caminar 1 min).</li>
+          <li>El objetivo pasa a ser <b>terminar de forma continua o casi continua</b>, no un ritmo concreto.</li>
+          <li>Nadie se acuerda del crono en tu primera carrera — sí de si disfrutaste y llegaste sano.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="acc">
+      <summary>Semana de la carrera (tapering)</summary>
+      <div class="body">
+        <p>La última semana (5-10 oct) reduce volumen entre un 40-50% respecto a tu semana más cargada. El objetivo es llegar descansado, no en forma de más.</p>
+        <ul>
+          <li><b>Lunes:</b> trote muy suave 15 min + 3-4 progresiones cortas para activar piernas sin fatigar.</li>
+          <li><b>Martes:</b> hipertrofia ligera, solo tren superior, volumen bajo.</li>
+          <li><b>Miércoles:</b> descanso o caminata suave.</li>
+          <li><b>Jueves:</b> última activación: 10 min trote suave + 3x1min a ritmo objetivo con recuperación completa. No debe dejarte fatigado.</li>
+          <li><b>Viernes:</b> descanso total. Deja preparado el material, la ropa y el desayuno de carrera.</li>
+          <li><b>Sábado 10 oct: carrera.</b> Calienta 10-12 min trotando suave + un par de progresiones cortas 15-20 min antes del pistoletazo. No salgas rápido en los primeros metros por la euforia de la salida.</li>
+        </ul>
+      </div>
+    </details>
+  </section>
+
+</main>
+
+<nav class="tabbar">
+  <button class="tabbtn active" data-tab="hoy"><span class="ic">●</span>Hoy</button>
+  <button class="tabbtn" data-tab="calendario"><span class="ic">▦</span>Calendario</button>
+  <button class="tabbtn" data-tab="progreso"><span class="ic">▲</span>Progreso</button>
+  <button class="tabbtn" data-tab="guia"><span class="ic">i</span>Guía</button>
+</nav>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* =====================================================================
+   RUMBO AL 5K — plan_5k_octubre_2026.html
+   Archivo único, sin dependencias externas, sin servidor.
+   Persistencia 100% en localStorage del navegador.
+===================================================================== */
+
+const RACE_DATE = '2026-10-10';
+const START_DATE = '2026-08-12';
+const STORAGE_KEY = 'rumbo5k_v1';
+
+/* ---------------------------------------------------------------------
+   1) DATOS DEL PLAN — 9 semanas, del 12/08/2026 al 10/10/2026
+--------------------------------------------------------------------- */
+const WU = "5-8 min caminando rápido + movilidad de tobillo, rodilla y cadera.";
+const CD = "5 min caminando + estiramientos suaves de gemelo, cuádriceps e isquios, sin rebotes.";
+
+const PLAN = [
+{ n:1, focus:"Adaptación — primeros pasos", sessions:[
+  {date:'2026-08-12',day:'Miércoles',type:'running',title:'Caminar + correr · sesión 1',duration:28,distance:null,pace:null,rpe:'3-4',warmup:WU,main:'6-8 series de 1 min corriendo muy suave + 2 min caminando.',cooldown:CD,goal:'Introducir el impacto de forma mínima y notar cómo responde la rodilla.',surface:'Cinta o tierra/parque, evita asfalto si puedes.',notes:'Si hay cualquier molestia nueva en la rodilla, para y camina el resto.'},
+  {date:'2026-08-13',day:'Jueves',type:'hipertrofia',title:'Hipertrofia — tren superior',duration:60,main:'Rutina de empuje/tracción habitual, sin cambios. Prioriza sensaciones, es tu primera semana combinando ambas cosas.',goal:'Mantener tu rutina de fuerza sin interferencia con el running de hoy/mañana.',notes:''},
+  {date:'2026-08-14',day:'Viernes',type:'running',title:'Caminar + correr · sesión 2',duration:27,rpe:'3-4',warmup:WU,main:'7 series de 1 min corriendo + 1:30 min caminando.',cooldown:CD,goal:'Progresar levemente el tiempo en carrera respecto a la sesión 1.',surface:'Tierra/parque o cinta.',notes:''},
+  {date:'2026-08-15',day:'Sábado',type:'hipertrofia',title:'Hipertrofia — piernas (volumen reducido)',duration:50,main:'Mismos ejercicios base, pero baja el volumen total ~20% esta semana (menos series) mientras el cuerpo se adapta al nuevo estímulo de impacto.',goal:'No acumular demasiada fatiga en piernas en tu primera semana de running.',notes:'Prioriza rango de movimiento cómodo, evita fallo muscular en sentadilla/prensa esta semana.'},
+  {date:'2026-08-16',day:'Domingo',type:'running',title:'Caminar + correr · sesión 3',duration:28,rpe:'4',warmup:WU,main:'6 series de 1:30 min corriendo + 1:30 min caminando.',cooldown:CD,goal:'Cerrar la semana con la serie más larga de correr seguido hasta ahora.',surface:'Tierra/parque o cinta.',notes:'Anota cómo te sientes: esta nota te servirá de referencia para las próximas semanas.'},
+]},
+{ n:2, focus:"Consolidar el ritmo caminar-correr", sessions:[
+  {date:'2026-08-17',day:'Lunes',type:'running',title:'Rodaje fácil caminar-correr',duration:30,rpe:'4',warmup:WU,main:'6 series de 2 min corriendo + 1:30 min caminando.',cooldown:CD,goal:'Ampliar el bloque de carrera continua a 2 minutos.',surface:'Tierra/parque o cinta.',notes:''},
+  {date:'2026-08-18',day:'Martes',type:'hipertrofia',title:'Hipertrofia — piernas',duration:60,main:'Rutina habitual de tren inferior, carga normal.',goal:'Recupera fuerza en piernas 24h después del running, con 2 días de margen hasta la próxima sesión de calidad.',notes:''},
+  {date:'2026-08-19',day:'Miércoles',type:'hipertrofia',title:'Hipertrofia — empuje (tren superior)',duration:55,main:'Rutina de empuje habitual. Sin running hoy: das descanso a las piernas antes de la sesión de mañana.',goal:'Mantener volumen de fuerza sin interferir en las piernas.',notes:''},
+  {date:'2026-08-20',day:'Jueves',type:'running',title:'Rodaje fácil',duration:29,rpe:'4-5',warmup:WU,main:'5 series de 3 min corriendo + 1 min caminando.',cooldown:CD,goal:'Primer bloque de 3 minutos seguidos corriendo.',surface:'Tierra/parque o cinta.',notes:''},
+  {date:'2026-08-21',day:'Viernes',type:'hipertrofia',title:'Hipertrofia — tracción + core',duration:50,main:'Tracción (dorsal/espalda/bíceps) + core. Ejercicios sin impacto en rodilla.',goal:'Completar la semana de fuerza sin cargar más las piernas.',notes:''},
+  {date:'2026-08-22',day:'Sábado',type:'running',title:'Rodaje largo de la semana',duration:26,rpe:'4-5',warmup:WU,main:'4 series de 4 min corriendo + 1 min caminando.',cooldown:CD,goal:'Sesión clave de la semana: el bloque continuo más largo hasta ahora (4 min).',surface:'Tierra/parque, evita cuestas pronunciadas.',notes:''},
+  {date:'2026-08-23',day:'Domingo',type:'rest',title:'Descanso completo',duration:0,main:'Sin entrenamiento. Es parte del plan, no un extra.',goal:'Recuperación completa antes de la semana 3.',notes:''},
+]},
+{ n:3, focus:"Bloques más largos + primer fartlek suave", sessions:[
+  {date:'2026-08-24',day:'Lunes',type:'running',title:'Rodaje fácil',duration:29,rpe:'4-5',warmup:WU,main:'4 series de 5 min corriendo + 1 min caminando.',cooldown:CD,goal:'Aumentar el bloque continuo a 5 minutos.',surface:'Tierra/parque o cinta.',notes:''},
+  {date:'2026-08-25',day:'Martes',type:'hipertrofia',title:'Hipertrofia — piernas',duration:60,main:'Rutina habitual, carga normal.',goal:'Mantener fuerza de piernas.',notes:''},
+  {date:'2026-08-26',day:'Miércoles',type:'hipertrofia',title:'Hipertrofia — empuje',duration:55,main:'Rutina habitual de empuje.',goal:'',notes:''},
+  {date:'2026-08-27',day:'Jueves',type:'running',title:'Fartlek suave',duration:26,rpe:'5-6',warmup:WU,main:'3 series de 6 min corriendo (con 2-3 cambios de ritmo suaves de 20-30s dentro de cada bloque) + 1 min caminando entre bloques.',cooldown:CD,goal:'Primer contacto con cambios de ritmo, sin buscar velocidad, solo variar la sensación de esfuerzo.',surface:'Tierra/parque llano.',notes:'Si notas la rodilla, elimina los cambios de ritmo y deja solo carrera continua suave.'},
+  {date:'2026-08-28',day:'Viernes',type:'hipertrofia',title:'Hipertrofia — tracción + core',duration:50,main:'Rutina habitual.',goal:'',notes:''},
+  {date:'2026-08-29',day:'Sábado',type:'running',title:'Rodaje largo + test informal',duration:28,rpe:'5',warmup:WU,main:'Intenta correr de forma continua el mayor tiempo posible (sin forzar), parando a caminar solo si lo necesitas, hasta completar ~25 min entre carrera y caminata.',cooldown:CD,goal:'TEST INFORMAL: anota cuántos minutos seguidos aguantaste corriendo. Es tu primera referencia real de resistencia.',surface:'Tierra/parque llano.',notes:'Registra el resultado en el cuadro de esta sesión — te servirá para calibrar la semana 4.'},
+  {date:'2026-08-30',day:'Domingo',type:'rest',title:'Descanso completo',duration:0,main:'Sin entrenamiento.',goal:'',notes:''},
+]},
+{ n:4, focus:"Carrera continua + primer test de referencia", sessions:[
+  {date:'2026-08-31',day:'Lunes',type:'running',title:'Rodaje continuo fácil',duration:20,distance:null,rpe:'4-5',warmup:WU,main:'15 minutos corriendo de forma continua, sin cortes. Si necesitas caminar 30-60s en algún punto, no pasa nada.',cooldown:CD,goal:'Primera vez con bloque continuo objetivo de 15 min.',surface:'Tierra/parque llano.',notes:''},
+  {date:'2026-09-01',day:'Martes',type:'hipertrofia',title:'Hipertrofia — piernas',duration:60,main:'Rutina habitual.',goal:'',notes:''},
+  {date:'2026-09-02',day:'Miércoles',type:'hipertrofia',title:'Hipertrofia — empuje',duration:55,main:'Rutina habitual.',goal:'',notes:''},
+  {date:'2026-09-03',day:'Jueves',type:'running',title:'Rodaje + progresiones cortas',duration:25,rpe:'4-5',warmup:WU,main:'15-18 min corriendo continuo y fácil + 4 progresiones (strides) de 15-20s a ritmo vivo pero controlado, con paseo de recuperación entre cada una.',cooldown:CD,goal:'Introducir un poco de velocidad de forma muy breve y segura, sin fatiga.',surface:'Tierra/parque llano, superficie estable.',notes:'Las progresiones no son sprints: sube el ritmo de forma progresiva, sin forzar la zancada.'},
+  {date:'2026-09-04',day:'Viernes',type:'hipertrofia',title:'Hipertrofia — tracción + core',duration:50,main:'Rutina habitual.',goal:'',notes:''},
+  {date:'2026-09-05',day:'Sábado',type:'test',title:'TEST — 20 minutos a esfuerzo controlado',duration:20,rpe:'7-8',warmup:WU,main:'Tras el calentamiento, corre 20 minutos al ritmo más rápido que puedas sostener de forma constante (no un sprint, un esfuerzo fuerte y mantenido). Mide la distancia recorrida.',cooldown:CD,goal:'Este test te da tu primer ritmo de referencia real (ritmo umbral aproximado). Regístralo: se usará para estimar tus zonas y tu ritmo de carrera.',surface:'Zona llana y medible: pista de atletismo, parque con distancias conocidas, o cinta.',notes:'Registra distancia y tiempo exactos en el cuadro de esta sesión.'},
+  {date:'2026-09-06',day:'Domingo',type:'rest',title:'Descanso completo',duration:0,main:'Sin entrenamiento.',goal:'',notes:''},
+]},
+{ n:5, focus:"Más volumen + evaluación de pasar a 4 días", sessions:[
+  {date:'2026-09-07',day:'Lunes',type:'running',title:'Rodaje fácil',duration:20,rpe:'4-5',warmup:WU,main:'20 minutos continuos en zona fácil (conversacional).',cooldown:CD,goal:'Consolidar la base aeróbica.',surface:'Libre, prioriza superficies blandas cuando puedas.',notes:''},
+  {date:'2026-09-08',day:'Martes',type:'hipertrofia',title:'Hipertrofia — piernas',duration:60,main:'Rutina habitual.',goal:'',notes:''},
+  {date:'2026-09-09',day:'Miércoles',type:'hipertrofia',title:'Hipertrofia — empuje',duration:55,main:'Rutina habitual.',goal:'',notes:''},
+  {date:'2026-09-10',day:'Jueves',type:'running',title:'Fartlek suave',duration:26,rpe:'5-6',warmup:WU,main:'20 min: 6 series de 1 min a ritmo moderado + 2 min trote suave de recuperación.',cooldown:CD,goal:'Seguir familiarizándote con los cambios de ritmo, ahora de forma más estructurada.',surface:'Zona llana y estable.',notes:''},
+  {date:'2026-09-11',day:'Viernes',type:'hipertrofia',title:'Hipertrofia — tracción + core',duration:50,main:'Rutina habitual.',goal:'',notes:''},
+  {date:'2026-09-12',day:'Sábado',type:'running',title:'Rodaje largo',duration:27,rpe:'5',warmup:WU,main:'25-28 minutos continuos en zona fácil.',cooldown:CD,goal:'El rodaje largo más extenso hasta ahora.',surface:'Prioriza terreno blando en esta sesión, es la de mayor volumen de la semana.',notes:''},
+  {date:'2026-09-13',day:'Domingo',type:'rest',title:'Descanso — revisa los criterios de 4º día',duration:0,main:'Repasa en la pestaña Guía los criterios para pasar de 3 a 4 días de running. Si los cumples todos, puedes añadir una sesión corta y fácil a partir de la próxima semana.',goal:'',notes:''},
+]},
+{ n:6, focus:"Trabajo de umbral + segundo test", sessions:[
+  {date:'2026-09-14',day:'Lunes',type:'running',title:'Rodaje fácil',duration:23,rpe:'4-5',warmup:WU,main:'20-25 minutos continuos en zona fácil.',cooldown:CD,goal:'Mantener la base mientras sube la exigencia del jueves.',surface:'Libre.',notes:''},
+  {date:'2026-09-15',day:'Martes',type:'hipertrofia',title:'Hipertrofia — piernas',duration:60,main:'Rutina habitual.',goal:'',notes:''},
+  {date:'2026-09-16',day:'Miércoles',type:'hipertrofia',title:'Hipertrofia — empuje',duration:55,main:'Rutina habitual.',goal:'',notes:''},
+  {date:'2026-09-17',day:'Jueves',type:'running',title:'Sesión de umbral',duration:35,rpe:'7-8',warmup:'10 min trote suave + movilidad.',main:'2 bloques de 8 minutos a esfuerzo moderado-fuerte (umbral), con 2 minutos de trote muy suave de recuperación entre ambos.',cooldown:CD,goal:'Primer estímulo real de umbral: mejora tu capacidad de sostener ritmos exigentes, clave para el 5K.',surface:'Zona llana y estable.',notes:'Si aparece fatiga excesiva o molestia de rodilla, reduce a 2x5min en vez de 2x8min.'},
+  {date:'2026-09-18',day:'Viernes',type:'hipertrofia',title:'Hipertrofia — tracción + core',duration:50,main:'Rutina habitual.',goal:'',notes:''},
+  {date:'2026-09-19',day:'Sábado',type:'test',title:'TEST — 2 km a ritmo constante',duration:15,rpe:'8-9',warmup:WU,main:'Tras calentar, corre 2 km al ritmo más rápido y constante que puedas mantener. Cronometra el tiempo total.',cooldown:CD,goal:'Este test es el más directo para estimar tu ritmo de carrera de 5K: tu ritmo de 5K suele ser 10-20 seg/km más lento que tu ritmo en este test de 2 km.',surface:'Pista de atletismo o recorrido llano con distancia conocida.',notes:'Registra el tiempo exacto: con esto ajustamos el objetivo de 6:30/km si hace falta.'},
+  {date:'2026-09-20',day:'Domingo',type:'rest',title:'Descanso (u opcional si ya pasaste a 4 días)',duration:0,main:'Si cumples los criterios de 4º día: sesión muy suave de 15-20 min. Si no, descanso completo.',goal:'',notes:''},
+]},
+{ n:7, focus:"Trabajo específico de 5K", sessions:[
+  {date:'2026-09-21',day:'Lunes',type:'running',title:'Rodaje fácil',duration:20,rpe:'4-5',warmup:WU,main:'20 minutos en zona fácil.',cooldown:CD,goal:'Recuperación activa tras el test del sábado.',surface:'Libre.',notes:''},
+  {date:'2026-09-22',day:'Martes',type:'hipertrofia',title:'Hipertrofia — piernas (volumen reducido)',duration:50,main:'Reduce el volumen ~15% respecto a semanas anteriores: menos series en los ejercicios de mayor impacto en rodilla.',goal:'Empezar a priorizar la frescura de piernas para las sesiones de calidad de running.',notes:''},
+  {date:'2026-09-23',day:'Miércoles',type:'hipertrofia',title:'Hipertrofia — empuje',duration:55,main:'Rutina habitual.',goal:'',notes:''},
+  {date:'2026-09-24',day:'Jueves',type:'running',title:'Series a ritmo 5K',duration:32,rpe:'8-9',warmup:'10 min trote suave + movilidad + 2 progresiones cortas.',main:'5 series de 3 minutos a tu ritmo objetivo de 5K (según tu último test), con 90 segundos de trote muy suave entre series.',cooldown:CD,goal:'Sesión específica: acostumbrar al cuerpo a la sensación exacta del ritmo de carrera.',surface:'Zona llana y estable, evita cuestas.',notes:''},
+  {date:'2026-09-25',day:'Viernes',type:'hipertrofia',title:'Hipertrofia — tracción + core (ligero)',duration:45,main:'Rutina habitual con algo menos de volumen.',goal:'',notes:''},
+  {date:'2026-09-26',day:'Sábado',type:'running',title:'Rodaje largo — el más largo del plan',duration:32,rpe:'5-6',warmup:WU,main:'30-32 minutos continuos en zona fácil-moderada.',cooldown:CD,goal:'Pico de volumen del plan antes de empezar a reducir carga.',surface:'Prioriza terreno blando.',notes:''},
+  {date:'2026-09-27',day:'Domingo',type:'rest',title:'Descanso completo',duration:0,main:'Sin entrenamiento.',goal:'',notes:''},
+]},
+{ n:8, focus:"Pico y comienzo de la reducción de carga", sessions:[
+  {date:'2026-09-28',day:'Lunes',type:'running',title:'Rodaje fácil',duration:20,rpe:'4-5',warmup:WU,main:'20 minutos en zona fácil.',cooldown:CD,goal:'',surface:'Libre.',notes:''},
+  {date:'2026-09-29',day:'Martes',type:'hipertrofia',title:'Hipertrofia — piernas (mantenimiento)',duration:45,main:'Volumen bajo, carga moderada. El objetivo es mantener, no progresar, a 11 días de la carrera.',goal:'',notes:''},
+  {date:'2026-09-30',day:'Miércoles',type:'hipertrofia',title:'Hipertrofia — empuje (mantenimiento)',duration:45,main:'Volumen algo reducido.',goal:'',notes:''},
+  {date:'2026-10-01',day:'Jueves',type:'running',title:'Última sesión de calidad',duration:30,rpe:'8-9',warmup:'10 min trote suave + movilidad.',main:'3 series de 5 minutos a ritmo objetivo de 5K, con 2 minutos de recuperación entre series.',cooldown:CD,goal:'Última sesión realmente intensa antes de la carrera. A partir de aquí, todo baja de intensidad.',surface:'Zona llana y estable.',notes:''},
+  {date:'2026-10-02',day:'Viernes',type:'hipertrofia',title:'Hipertrofia — tracción + core (ligero)',duration:40,main:'Volumen bajo.',goal:'',notes:''},
+  {date:'2026-10-03',day:'Sábado',type:'running',title:'Rodaje moderado — inicia el taper',duration:21,rpe:'5',warmup:WU,main:'20-22 minutos en zona fácil-moderada, sin buscar ritmo.',cooldown:CD,goal:'Primera sesión con volumen ya reducido de cara a la carrera.',surface:'Libre.',notes:''},
+  {date:'2026-10-04',day:'Domingo',type:'rest',title:'Descanso completo',duration:0,main:'Sin entrenamiento.',goal:'',notes:''},
+]},
+{ n:9, focus:"Semana de la carrera — tapering", sessions:[
+  {date:'2026-10-05',day:'Lunes',type:'running',title:'Trote muy suave + activación',duration:18,rpe:'3-4',warmup:'5 min caminando.',main:'15 minutos de trote muy suave + 3-4 progresiones cortas de 15-20s.',cooldown:CD,goal:'Mantener el cuerpo activado sin generar fatiga.',surface:'Libre, terreno estable.',notes:''},
+  {date:'2026-10-06',day:'Martes',type:'hipertrofia',title:'Hipertrofia — tren superior ligero',duration:35,main:'Solo tren superior, volumen bajo. Nada de piernas esta semana.',goal:'Llegar fresco a la carrera sin perder del todo el estímulo de fuerza.',notes:''},
+  {date:'2026-10-07',day:'Miércoles',type:'rest',title:'Descanso o caminata suave',duration:20,main:'Descanso completo, o como mucho una caminata suave de 20 minutos si te apetece moverte.',goal:'',notes:''},
+  {date:'2026-10-08',day:'Jueves',type:'running',title:'Última activación antes de la carrera',duration:18,rpe:'6-7',warmup:'10 min trote suave.',main:'3 series de 1 minuto a tu ritmo objetivo de carrera, con recuperación completa (2 min) entre cada una.',cooldown:'5 min caminando.',goal:'Recordarle al cuerpo la sensación del ritmo de carrera, sin generar fatiga.',surface:'Libre.',notes:'Esta sesión debe sentirse ligera. Si notas piernas cansadas, para antes.'},
+  {date:'2026-10-09',day:'Viernes',type:'rest',title:'Descanso total — víspera de la carrera',duration:0,main:'Sin entrenamiento. Prepara ropa, dorsal, calzado y desayuno de carrera. Hidrátate bien y prioriza dormir.',goal:'',notes:''},
+  {date:'2026-10-10',day:'Sábado',type:'carrera',title:'🏁 CARRERA — 5K',duration:null,rpe:'según escenario',warmup:'10-12 min trote suave + 2 progresiones cortas, 15-20 min antes del pistoletazo.',main:'Sigue la estrategia de tu escenario (A/B/C) de la pestaña Guía. No salgas rápido en los primeros metros.',cooldown:'5-10 min caminando + estiramientos suaves.',goal:'Completar los 5K de forma continua y con buenas sensaciones.',surface:'Circuito oficial de la carrera.',notes:'¡A disfrutarlo — es el resultado de 9 semanas de trabajo!'},
+]},
+];
+
+// aplanar a lista de sesiones con id único
+const SESSIONS = [];
+PLAN.forEach(w=>{
+  w.sessions.forEach((s,i)=>{
+    s.id = 'w'+w.n+'-'+i;
+    s.week = w.n;
+    SESSIONS.push(s);
+  });
+});
+
+/* ---------------------------------------------------------------------
+   2) ESTADO / PERSISTENCIA (localStorage)
+--------------------------------------------------------------------- */
+function loadState(){
+  try{
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if(raw) return JSON.parse(raw);
+  }catch(e){}
+  return { logs:{}, weights:[{date:START_DATE, weight:96.85}] };
+}
+function saveState(){
+  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }catch(e){}
+}
+let state = loadState();
+if(!state.logs) state.logs = {};
+if(!state.weights || !state.weights.length) state.weights = [{date:START_DATE, weight:96.85}];
+
+function getLog(id){
+  return state.logs[id] || {completed:false, distance:null, time:null, pace:null, rpe:'', feeling:'', notes:''};
+}
+function setLog(id, patch){
+  state.logs[id] = Object.assign(getLog(id), patch);
+  saveState();
+}
+
+/* ---------------------------------------------------------------------
+   3) HELPERS
+--------------------------------------------------------------------- */
+const TYPE_LABEL = {running:'Running', hipertrofia:'Hipertrofia', rest:'Descanso', cardio:'Cardio opcional', test:'Test', carrera:'Carrera'};
+const TYPE_ICON = {running:'🏃', hipertrofia:'🏋️', rest:'😴', cardio:'🚴', test:'⏱️', carrera:'🏁'};
+
+function todayISO(){
+  const d = new Date();
+  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+}
+function parseISO(s){ const [y,m,d]=s.split('-').map(Number); return new Date(y,m-1,d); }
+function daysBetween(a,b){ return Math.round((parseISO(b)-parseISO(a))/86400000); }
+function fmtDateShort(iso){
+  const d = parseISO(iso);
+  return d.getDate()+' '+['ene','feb','mar','abr','may','jun','jul','ago','sep','oct','nov','dic'][d.getMonth()];
+}
+function toast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toast._h);
+  toast._h = setTimeout(()=>t.classList.remove('show'), 1800);
+}
+function paceStrToMin(str){
+  // "6:30" -> 6.5
+  if(!str) return null;
+  const m = String(str).match(/^(\d+):(\d\d)$/);
+  if(!m) return null;
+  return parseInt(m[1],10) + parseInt(m[2],10)/60;
+}
+function minToPaceStr(min){
+  if(min==null || isNaN(min)) return '--';
+  const m = Math.floor(min);
+  const s = Math.round((min-m)*60);
+  return m+':'+String(s).padStart(2,'0');
+}
+
+/* Última estimación de ritmo objetivo, basada en tests registrados */
+function estimatePaceGoal(){
+  const t20 = getLog('w4-5'); // test 20 min
+  const t2k = getLog('w6-5'); // test 2km (sábado semana 6)
+  let pace2k = null;
+  if(t2k && t2k.distance && t2k.time){
+    pace2k = t2k.time / t2k.distance;
+  } else if(t2k && t2k.pace){
+    pace2k = paceStrToMin(t2k.pace);
+  }
+  if(pace2k){
+    return pace2k + 0.2; // 5K algo más lento que ritmo de 2km (~12 seg/km)
+  }
+  let pace20 = null;
+  if(t20 && t20.distance && t20.time){
+    pace20 = t20.time / t20.distance;
+  }
+  if(pace20){
+    return pace20 + 0.35;
+  }
+  return null;
+}
+
+/* ---------------------------------------------------------------------
+   4) RENDER: TAB HOY
+--------------------------------------------------------------------- */
+function renderRing(){
+  const today = todayISO();
+  let daysLeft = daysBetween(today, RACE_DATE);
+  const totalDays = daysBetween(START_DATE, RACE_DATE);
+  if(daysLeft < 0) daysLeft = 0;
+  document.getElementById('daysLeft').textContent = daysLeft;
+  const elapsed = Math.min(Math.max(daysBetween(START_DATE, today),0), totalDays);
+  const frac = totalDays>0 ? elapsed/totalDays : 0;
+  const circumference = 2*Math.PI*42;
+  const ring = document.getElementById('ringProg');
+  ring.setAttribute('stroke-dasharray', circumference.toFixed(1));
+  ring.setAttribute('stroke-dashoffset', (circumference*(1-frac)).toFixed(1));
+
+  const pg = estimatePaceGoal();
+  document.getElementById('paceGoalLine').innerHTML = pg
+    ? 'Ritmo objetivo: <b>'+minToPaceStr(pg)+' /km</b> (estimado por tus tests)'
+    : 'Ritmo objetivo: <b>6:30/km orientativo</b> — se ajustará con tus tests';
+}
+
+function sessionForDate(iso){
+  return SESSIONS.find(s=>s.date===iso);
+}
+function nextUpcoming(fromIso){
+  return SESSIONS.find(s=> s.date > fromIso && s.type!=='rest');
+}
+
+function renderSessionCard(s, opts){
+  opts = opts||{};
+  const log = getLog(s.id);
+  const done = !!log.completed;
+  const wrap = document.createElement('div');
+  wrap.className = 'km-post';
+  const stick = document.createElement('div');
+  stick.className = 'post-stick type-'+s.type;
+  wrap.appendChild(stick);
+
+  const card = document.createElement('div');
+  card.className = 'sess'+(done?' done':'');
+  card.style.flex='1';
+
+  const head = document.createElement('div');
+  head.className='sesshead';
+  head.innerHTML = `
+    <div>
+      <span class="tag type-${s.type}">${TYPE_ICON[s.type]} ${TYPE_LABEL[s.type]}</span>
+      <div class="sesstitle">${s.title}</div>
+      <div class="sessdate">${s.day} · ${fmtDateShort(s.date)}${opts.showWeek?(' · Semana '+s.week):''}</div>
+    </div>
+  `;
+  const checkBtn = document.createElement('button');
+  checkBtn.className = 'checkbtn'+(done?' checked':'');
+  checkBtn.innerHTML = '✓';
+  checkBtn.onclick = ()=>{
+    const nowDone = !getLog(s.id).completed;
+    setLog(s.id, {completed:nowDone});
+    toast(nowDone? 'Sesión completada' : 'Marcada como pendiente');
+    renderAll();
+  };
+  head.appendChild(checkBtn);
+  card.appendChild(head);
+
+  if(s.type!=='rest'){
+    const meta = document.createElement('div');
+    meta.className='sessmeta';
+    if(s.duration) meta.innerHTML += `<span class="chip">⏱ <b>${s.duration} min</b></span>`;
+    if(s.rpe) meta.innerHTML += `<span class="chip">RPE <b>${s.rpe}</b></span>`;
+    if(s.distance) meta.innerHTML += `<span class="chip">📏 <b>${s.distance} km</b></span>`;
+    if(s.surface) meta.innerHTML += `<span class="chip">${s.surface}</span>`;
+    card.appendChild(meta);
+  }
+
+  if(s.main){
+    const mb = document.createElement('div');
+    mb.className='sessblock';
+    mb.innerHTML = `<b>Parte principal:</b> ${s.main}`;
+    card.appendChild(mb);
+  }
+
+  if(s.warmup || s.cooldown || s.goal || s.notes){
+    const det = document.createElement('details');
+    det.className='details';
+    det.innerHTML = `<summary>Ver más detalles</summary>`;
+    const db = document.createElement('div');
+    db.className='sessblock';
+    let html='';
+    if(s.warmup) html += `<p><b>Calentamiento:</b> ${s.warmup}</p>`;
+    if(s.cooldown) html += `<p><b>Enfriamiento:</b> ${s.cooldown}</p>`;
+    if(s.goal) html += `<p><b>Objetivo de la sesión:</b> ${s.goal}</p>`;
+    db.innerHTML = html;
+    det.appendChild(db);
+    if(s.notes){
+      const nb = document.createElement('div');
+      nb.className='sessnote';
+      nb.textContent = s.notes;
+      det.appendChild(nb);
+    }
+    card.appendChild(det);
+  }
+
+  // registro (log)
+  if(s.type!=='rest'){
+    const logDet = document.createElement('details');
+    logDet.className='details';
+    logDet.innerHTML = `<summary>${done? 'Editar registro' : 'Registrar esta sesión'}</summary>`;
+    const lb = document.createElement('div');
+    lb.className='logbox';
+    lb.innerHTML = `
+      <div class="logrow">
+        <div><label>Distancia (km)</label><input type="number" step="0.01" inputmode="decimal" class="inDist" value="${log.distance??''}"></div>
+        <div><label>Tiempo (min)</label><input type="number" step="0.1" inputmode="decimal" class="inTime" value="${log.time??''}"></div>
+      </div>
+      <div class="paceOut">Ritmo calculado: <span class="paceCalc">--</span> /km</div>
+      <div class="logrow">
+        <div><label>RPE (1-10)</label><input type="number" min="1" max="10" class="inRpe" value="${log.rpe||''}"></div>
+        <div><label>Sensaciones</label>
+          <select class="inFeel">
+            <option value="">--</option>
+            <option ${log.feeling==='genial'?'selected':''} value="genial">Genial</option>
+            <option ${log.feeling==='bien'?'selected':''} value="bien">Bien</option>
+            <option ${log.feeling==='normal'?'selected':''} value="normal">Normal</option>
+            <option ${log.feeling==='duro'?'selected':''} value="duro">Duro</option>
+            <option ${log.feeling==='molestia'?'selected':''} value="molestia">Con molestia</option>
+          </select>
+        </div>
+      </div>
+      <div class="logrow full">
+        <div><label>Notas</label><textarea class="inNotes" placeholder="Cómo te has sentido, la rodilla, el clima...">${log.notes||''}</textarea></div>
+      </div>
+      <button class="bigbtn ${done?'done':''}">${done? '✓ Sesión completada' : 'Marcar como completado y guardar'}</button>
+    `;
+    logDet.appendChild(lb);
+    card.appendChild(logDet);
+
+    const inDist = lb.querySelector('.inDist');
+    const inTime = lb.querySelector('.inTime');
+    const paceCalc = lb.querySelector('.paceCalc');
+    function updatePaceCalc(){
+      const d = parseFloat(inDist.value), t = parseFloat(inTime.value);
+      if(d>0 && t>0){ paceCalc.textContent = minToPaceStr(t/d); }
+      else { paceCalc.textContent = '--'; }
+    }
+    updatePaceCalc();
+    inDist.addEventListener('input', updatePaceCalc);
+    inTime.addEventListener('input', updatePaceCalc);
+
+    const saveBtn = lb.querySelector('.bigbtn');
+    saveBtn.onclick = ()=>{
+      const d = parseFloat(inDist.value)||null;
+      const t = parseFloat(inTime.value)||null;
+      const pace = (d>0 && t>0) ? minToPaceStr(t/d) : null;
+      setLog(s.id, {
+        completed:true,
+        distance:d, time:t, pace:pace,
+        rpe: lb.querySelector('.inRpe').value,
+        feeling: lb.querySelector('.inFeel').value,
+        notes: lb.querySelector('.inNotes').value
+      });
+      toast('Registro guardado');
+      renderAll();
+    };
+  }
+
+  wrap.appendChild(card);
+  return wrap;
+}
+
+function renderTodayNext(){
+  const today = todayISO();
+  const todayCard = document.getElementById('todayCard');
+  const nextCard = document.getElementById('nextCard');
+  todayCard.innerHTML = '';
+  nextCard.innerHTML = '';
+
+  const sToday = sessionForDate(today);
+  const h1 = document.createElement('h2');
+  h1.style.cssText='font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--chalk-dim);margin:4px 0 8px;';
+  h1.textContent = 'Entrenamiento de hoy';
+  todayCard.appendChild(h1);
+
+  if(sToday){
+    todayCard.appendChild(renderSessionCard(sToday));
+  } else {
+    const before = today < START_DATE;
+    const after = today > RACE_DATE;
+    const box = document.createElement('div');
+    box.className='card empty';
+    box.textContent = before ? 'El plan empieza el 12 de agosto de 2026.' :
+                       after ? '¡El plan ha terminado! Espero que la carrera fuera genial 🏁' :
+                       'Hoy no hay sesión programada. Buen día para descansar.';
+    todayCard.appendChild(box);
+  }
+
+  const sNext = nextUpcoming(today);
+  if(sNext){
+    const h2 = document.createElement('h2');
+    h2.style.cssText='font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--chalk-dim);margin:16px 0 8px;';
+    h2.textContent = 'Próximo entrenamiento';
+    nextCard.appendChild(h2);
+    nextCard.appendChild(renderSessionCard(sNext));
+  }
+}
+
+function renderStats(){
+  let completed=0, totalCountable=0, km=0, timeMin=0, bestPace=null;
+  SESSIONS.forEach(s=>{
+    if(s.type==='rest') return;
+    totalCountable++;
+    const log = getLog(s.id);
+    if(log.completed) completed++;
+    if(log.distance) km += log.distance;
+    if(log.time && (s.type==='running'||s.type==='test'||s.type==='carrera')) timeMin += log.time;
+    if(log.distance && log.time){
+      const p = log.time/log.distance;
+      if(bestPace===null || p<bestPace) bestPace = p;
+    }
+  });
+  document.getElementById('statCompleted').textContent = completed+'/'+totalCountable;
+  document.getElementById('statKm').textContent = km.toFixed(1)+' km';
+  document.getElementById('statTime').textContent = (timeMin/60).toFixed(1)+' h';
+  document.getElementById('statPace').textContent = bestPace? minToPaceStr(bestPace)+'/km' : '--';
+}
+
+function renderWeight(){
+  const input = document.getElementById('weightInput');
+  const last = state.weights[state.weights.length-1];
+  input.value = last.weight;
+  input.onchange = ()=>{
+    const v = parseFloat(input.value);
+    if(!v || v<30 || v>300) return;
+    const today = todayISO();
+    const existingIdx = state.weights.findIndex(w=>w.date===today);
+    if(existingIdx>=0) state.weights[existingIdx].weight = v;
+    else state.weights.push({date:today, weight:v});
+    saveState();
+    toast('Peso actualizado');
+    renderCharts();
+  };
+}
+
+/* ---------------------------------------------------------------------
+   5) RENDER: TAB CALENDARIO
+--------------------------------------------------------------------- */
+function renderCalendar(){
+  const list = document.getElementById('calendarList');
+  list.innerHTML = '';
+  PLAN.forEach(w=>{
+    const head = document.createElement('div');
+    head.className='weekhead';
+    const first = w.sessions[0].date, last = w.sessions[w.sessions.length-1].date;
+    head.innerHTML = `
+      <div>
+        <div class="wk">Semana ${w.n}</div>
+        <div class="wf">${w.focus}</div>
+      </div>
+      <div class="wd">${fmtDateShort(first)} – ${fmtDateShort(last)}</div>
+    `;
+    list.appendChild(head);
+    w.sessions.forEach(s=>{
+      list.appendChild(renderSessionCard(s));
+    });
+  });
+}
+
+/* ---------------------------------------------------------------------
+   6) RENDER: TAB PROGRESO (canvas charts, sin librerías)
+--------------------------------------------------------------------- */
+function weeklyAgg(){
+  return PLAN.map(w=>{
+    let km=0, time=0, paces=[];
+    w.sessions.forEach(s=>{
+      const log = getLog(s.id);
+      if(log.distance) km += log.distance;
+      if(log.time && s.type!=='hipertrofia') time += log.time;
+      if(log.distance && log.time) paces.push(log.time/log.distance);
+    });
+    const avgPace = paces.length? paces.reduce((a,b)=>a+b,0)/paces.length : null;
+    return {week:w.n, km, time, avgPace};
+  });
+}
+
+function drawBarChart(canvas, labels, data, color){
+  const ctx = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio||1;
+  const w = canvas.clientWidth, h = 150;
+  canvas.width = w*dpr; canvas.height = h*dpr;
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  ctx.clearRect(0,0,w,h);
+  const max = Math.max(1, ...data);
+  const padL=8, padB=18, padT=8, padR=8;
+  const cw = w-padL-padR, ch = h-padT-padB;
+  const bw = cw/data.length*0.6;
+  const gap = cw/data.length;
+  ctx.font = '9px -apple-system,sans-serif';
+  data.forEach((v,i)=>{
+    const bh = (v/max)*ch;
+    const x = padL + i*gap + (gap-bw)/2;
+    const y = padT + ch - bh;
+    ctx.fillStyle = color;
+    ctx.globalAlpha = v>0? 1: 0.15;
+    ctx.beginPath();
+    if(ctx.roundRect) ctx.roundRect(x,y,bw,Math.max(bh,2),3); else ctx.rect(x,y,bw,Math.max(bh,2));
+    ctx.fill();
+    ctx.globalAlpha = 1;
+    ctx.fillStyle = '#9498a8';
+    ctx.textAlign='center';
+    ctx.fillText(labels[i], x+bw/2, h-4);
+  });
+}
+
+function drawLineChart(canvas, labels, data, color){
+  const ctx = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio||1;
+  const w = canvas.clientWidth, h = 150;
+  canvas.width = w*dpr; canvas.height = h*dpr;
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  ctx.clearRect(0,0,w,h);
+  const pts = data.map((v,i)=>({v,i})).filter(p=>p.v!=null);
+  const padL=8, padB=18, padT=10, padR=8;
+  const cw = w-padL-padR, ch = h-padT-padB;
+  ctx.font = '9px -apple-system,sans-serif';
+  ctx.fillStyle='#9498a8';
+  ctx.textAlign='center';
+  labels.forEach((l,i)=>{
+    const x = padL + (cw/(labels.length-1||1))*i;
+    ctx.fillText(l, x, h-4);
+  });
+  if(pts.length<1){
+    ctx.fillStyle='#9498a8';
+    ctx.textAlign='center';
+    ctx.fillText('Aún sin datos suficientes', w/2, h/2);
+    return;
+  }
+  const vals = pts.map(p=>p.v);
+  const max = Math.max(...vals), min = Math.min(...vals);
+  const range = (max-min)||1;
+  ctx.beginPath();
+  pts.forEach((p,idx)=>{
+    const x = padL + (cw/(labels.length-1||1))*p.i;
+    const y = padT + ch - ((p.v-min)/range)*ch;
+    if(idx===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+  });
+  ctx.strokeStyle = color;
+  ctx.lineWidth = 2.2;
+  ctx.lineJoin='round';
+  ctx.stroke();
+  pts.forEach(p=>{
+    const x = padL + (cw/(labels.length-1||1))*p.i;
+    const y = padT + ch - ((p.v-min)/range)*ch;
+    ctx.beginPath();
+    ctx.arc(x,y,3,0,Math.PI*2);
+    ctx.fillStyle = color;
+    ctx.fill();
+  });
+}
+
+function renderCharts(){
+  const agg = weeklyAgg();
+  const labels = agg.map(a=>'S'+a.week);
+  drawBarChart(document.getElementById('chartKm'), labels, agg.map(a=>+a.km.toFixed(1)), getComputedStyle(document.documentElement).getPropertyValue('--ember').trim());
+  drawBarChart(document.getElementById('chartTime'), labels, agg.map(a=>a.time), getComputedStyle(document.documentElement).getPropertyValue('--sky').trim());
+  drawLineChart(document.getElementById('chartPace'), labels, agg.map(a=>a.avgPace), getComputedStyle(document.documentElement).getPropertyValue('--gold').trim());
+  const wLabels = state.weights.map(w=>fmtDateShort(w.date));
+  const wVals = state.weights.map(w=>w.weight);
+  drawLineChart(document.getElementById('chartWeight'), wLabels, wVals, getComputedStyle(document.documentElement).getPropertyValue('--moss').trim());
+}
+
+/* ---------------------------------------------------------------------
+   7) TABS
+--------------------------------------------------------------------- */
+function initTabs(){
+  document.querySelectorAll('.tabbtn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      document.querySelectorAll('.tabbtn').forEach(b=>b.classList.remove('active'));
+      document.querySelectorAll('.tabpanel').forEach(p=>p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
+      if(btn.dataset.tab==='progreso') renderCharts();
+    });
+  });
+}
+
+/* ---------------------------------------------------------------------
+   8) BOOT
+--------------------------------------------------------------------- */
+function renderAll(){
+  renderRing();
+  renderTodayNext();
+  renderStats();
+  renderWeight();
+  renderCalendar();
+}
+
+window.addEventListener('DOMContentLoaded', ()=>{
+  initTabs();
+  renderAll();
+  renderCharts();
+});
+</script>
+</body>
+</html>
