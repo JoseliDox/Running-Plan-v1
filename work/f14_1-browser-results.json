@@ -1,0 +1,29 @@
+{
+  "empty": {
+    "races": 0,
+    "activeRaceId": null,
+    "welcome": "Bienvenido a Made2RunCrea tu primera carrera para empezar.Crear mi primera carrera"
+  },
+  "beginner": {
+    "feasibility": "viable",
+    "type": "WALK",
+    "total": 14,
+    "blockMinutes": 14,
+    "cardShowsTotal": true,
+    "raceStrategy": "caco"
+  },
+  "infeasible": {
+    "status": "base_insufficient",
+    "notice": true,
+    "raceStrategy": "caco",
+    "taper": [
+      50,
+      44,
+      38,
+      0
+    ]
+  },
+  "profileFields": true,
+  "duplicateIds": [],
+  "consoleErrors": []
+}

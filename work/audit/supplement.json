@@ -1,0 +1,31 @@
+{
+  "phases": [
+    "adaptacion",
+    "adaptacion",
+    "base",
+    "desarrollo",
+    "desarrollo",
+    "especifica",
+    "especifica",
+    "taper",
+    "taper"
+  ],
+  "weeklyMissingRpe": "MAINTAIN",
+  "matrix": {
+    "cases": 180,
+    "calendarInvariantFailures": []
+  },
+  "schema0": {
+    "active": null,
+    "planRemains": false
+  },
+  "multiRaceDirty": {
+    "dirty": true,
+    "stillRunning": true,
+    "availability": []
+  },
+  "generationCounters": {
+    "races": 2,
+    "cycles": 1
+  }
+}

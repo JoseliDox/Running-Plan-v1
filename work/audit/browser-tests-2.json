@@ -1,0 +1,74 @@
+[
+  {
+    "id": "B01-empty",
+    "data": {
+      "welcome": "Bienvenido a Made2RunCrea tu primera carrera para empezar.Crear mi primera carrera",
+      "planVisibleChildren": 0
+    }
+  },
+  {
+    "id": "B02-modal-cancel",
+    "data": [
+      "confirmed B"
+    ]
+  },
+  {
+    "id": "B03-custom-distance",
+    "data": {
+      "before": 21.098,
+      "selected": "21.098",
+      "after": 21.098,
+      "raceDistance": 21.098
+    }
+  },
+  {
+    "id": "B04-validation",
+    "data": {
+      "distance": 10,
+      "date": "2026-11-16",
+      "time": null
+    }
+  },
+  {
+    "id": "B05-xss",
+    "data": {
+      "executed": false
+    }
+  },
+  {
+    "id": "B06-duplicate-ids",
+    "data": []
+  },
+  {
+    "id": "B07-labels",
+    "data": {
+      "unassociated": 71,
+      "total": 75,
+      "clickableDivs": 28
+    }
+  },
+  {
+    "id": "B08-old-chart-caption",
+    "data": "OLD USER 5 km"
+  },
+  {
+    "id": "B09-render-writes",
+    "data": 2
+  },
+  {
+    "id": "B10-complete-keeps-pace",
+    "data": {
+      "type": "completar",
+      "pace": null,
+      "card": "Completar"
+    }
+  },
+  {
+    "id": "B11-baseline-console",
+    "data": []
+  },
+  {
+    "id": "HARNESS-ERROR",
+    "data": "TypeError: Cannot set properties of null (setting 'value')\n    at http://127.0.0.1:8771/:4422:272"
+  }
+]

@@ -1,0 +1,1 @@
+const fs=require('fs'),vm=require('vm');const h=fs.readFileSync('outputs/index.html','utf8');for(const m of h.matchAll(/<script[^>]*>([\s\S]*?)<\/script>/g))new vm.Script(m[1]);console.log('scripts OK',h.length); 

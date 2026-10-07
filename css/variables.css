@@ -1,0 +1,98 @@
+:root{
+  /* Fallback (se sobreescribe por [data-mode]/[data-palette] antes del primer paint) */
+  --ink:#12141c;
+  --surface:#1b1e29;
+  --surface-2:#232735;
+  --surface-3:#2a2f40;
+  --chalk:#f4f2ec;
+  --chalk-2:#d6d8e0;
+  --chalk-dim:#9498a8;
+  --line:#2c3040;
+  --ember:#ff6a3d;
+  --ember-dim:#ff6a3d33;
+  --moss:#8fae7a;
+  --moss-dim:#8fae7a2e;
+  --sky:#5fa8d3;
+  --sky-dim:#5fa8d32e;
+  --gold:#f0b429;
+  --gold-dim:#f0b4292e;
+  --race:#ff3d68;
+  --race-dim:#ff3d6830;
+  --orange:#ff9f43;
+  --orange-dim:#ff9f4326;
+  --on-accent:#17120c;
+  --radius:16px;
+  font-size:16px;
+}
+
+/* ===================== SISTEMA DE TEMAS (Fase 7) =====================
+   Dos ejes independientes en <html data-mode="" data-palette="">:
+   - data-mode: light | dark | amoled  -> define neutros (fondo/superficies/texto)
+   - data-palette: running | ocean | performance | minimal -> define acentos
+   Cada acento tiene una variante "vivid" (usada en dark/amoled, sobre fondos
+   oscuros) y una variante más oscura/saturada para light (mejor contraste
+   sobre fondos claros), ya que los acentos se usan como color de texto sobre
+   su propio fondo "-dim" en muchos componentes (tags, chips, pills).
+======================================================================= */
+
+/* ---- MODOS (neutros) ---- */
+[data-mode="light"]{
+  --ink:#f4f3ef; --surface:#ffffff; --surface-2:#f1efe8; --surface-3:#e8e4d8;
+  --chalk:#181a1f; --chalk-2:#3d4048; --chalk-dim:#6b6e78; --line:#dedad0;
+  --on-accent:#ffffff;
+}
+[data-mode="dark"]{
+  --ink:#12141c; --surface:#1b1e29; --surface-2:#232735; --surface-3:#2a2f40;
+  --chalk:#f4f2ec; --chalk-2:#d6d8e0; --chalk-dim:#9498a8; --line:#2c3040;
+  --on-accent:#17120c;
+}
+[data-mode="amoled"]{
+  --ink:#000000; --surface:#0a0a0c; --surface-2:#111114; --surface-3:#18181c;
+  --chalk:#f4f2ec; --chalk-2:#d2d4da; --chalk-dim:#84889a; --line:#1d1d21;
+  --on-accent:#17120c;
+}
+
+/* ---- PALETAS (acentos), variante vivid para dark/amoled ---- */
+[data-mode="dark"][data-palette="running"], [data-mode="amoled"][data-palette="running"]{
+  --ember:#ff6a3d; --ember-dim:#ff6a3d33; --moss:#8fae7a; --moss-dim:#8fae7a2e;
+  --sky:#5fa8d3; --sky-dim:#5fa8d32e; --gold:#f0b429; --gold-dim:#f0b4292e;
+  --race:#ff3d68; --race-dim:#ff3d6830; --orange:#ff9f43; --orange-dim:#ff9f4326;
+}
+[data-mode="dark"][data-palette="ocean"], [data-mode="amoled"][data-palette="ocean"]{
+  --ember:#14b8a6; --ember-dim:#14b8a633; --moss:#34d399; --moss-dim:#34d3992e;
+  --sky:#38bdf8; --sky-dim:#38bdf82e; --gold:#f2b134; --gold-dim:#f2b1342e;
+  --race:#ff5c72; --race-dim:#ff5c7230; --orange:#ff9f5a; --orange-dim:#ff9f5a26;
+}
+[data-mode="dark"][data-palette="performance"], [data-mode="amoled"][data-palette="performance"]{
+  --ember:#c6f135; --ember-dim:#c6f13533; --moss:#31e17c; --moss-dim:#31e17c2e;
+  --sky:#33c3ff; --sky-dim:#33c3ff2e; --gold:#ffcc33; --gold-dim:#ffcc332e;
+  --race:#ff3b5c; --race-dim:#ff3b5c30; --orange:#ff8a3d; --orange-dim:#ff8a3d26;
+}
+[data-mode="dark"][data-palette="minimal"], [data-mode="amoled"][data-palette="minimal"]{
+  --ember:#9aa2b1; --ember-dim:#9aa2b133; --moss:#8bb094; --moss-dim:#8bb0942e;
+  --sky:#89aac2; --sky-dim:#89aac22e; --gold:#c7a468; --gold-dim:#c7a4682e;
+  --race:#c07886; --race-dim:#c0788630; --orange:#c99b6e; --orange-dim:#c99b6e26;
+}
+
+/* ---- PALETAS (acentos), variante oscura/saturada para light ---- */
+[data-mode="light"][data-palette="running"]{
+  --ember:#c44a1f; --ember-dim:#c44a1f26; --moss:#4f7a3c; --moss-dim:#4f7a3c22;
+  --sky:#1f6fa8; --sky-dim:#1f6fa822; --gold:#9c7712; --gold-dim:#9c771122;
+  --race:#c81f49; --race-dim:#c81f4922; --orange:#b5651c; --orange-dim:#b5651c22;
+}
+[data-mode="light"][data-palette="ocean"]{
+  --ember:#0f766e; --ember-dim:#0f766e22; --moss:#157a53; --moss-dim:#157a5322;
+  --sky:#0369a1; --sky-dim:#0369a122; --gold:#92620a; --gold-dim:#92620a22;
+  --race:#b3273f; --race-dim:#b3273f22; --orange:#b5651c; --orange-dim:#b5651c22;
+}
+[data-mode="light"][data-palette="performance"]{
+  --ember:#5c7a0a; --ember-dim:#5c7a0a22; --moss:#157a3f; --moss-dim:#157a3f22;
+  --sky:#0a72a6; --sky-dim:#0a72a622; --gold:#8a6600; --gold-dim:#8a660022;
+  --race:#b3132f; --race-dim:#b3132f22; --orange:#a3520f; --orange-dim:#a3520f22;
+}
+[data-mode="light"][data-palette="minimal"]{
+  --ember:#4b5563; --ember-dim:#4b556322; --moss:#3f6b4d; --moss-dim:#3f6b4d22;
+  --sky:#3f6580; --sky-dim:#3f658022; --gold:#7a5f22; --gold-dim:#7a5f2222;
+  --race:#7a3f49; --race-dim:#7a3f4922; --orange:#7a5233; --orange-dim:#7a523322;
+}
+/* ======================================================================= */

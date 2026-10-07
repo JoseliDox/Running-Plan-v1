@@ -1,0 +1,340 @@
+[
+  {
+    "id": "T01-empty-idempotent",
+    "result": {
+      "races": 0,
+      "active": null,
+      "plan": null
+    }
+  },
+  {
+    "id": "T02-distance-independent",
+    "result": {
+      "distances": [
+        3,
+        5,
+        10,
+        21.0975,
+        42.195
+      ],
+      "allIdentical": false
+    }
+  },
+  {
+    "id": "T03-cycles-reset-legacy",
+    "result": {
+      "before": {
+        "type": "completar",
+        "pace": null,
+        "start": "2026-08-31"
+      },
+      "after": {
+        "type": "completar",
+        "targetPaceMinKm": null,
+        "targetPaceLabel": "",
+        "startDate": "2026-08-31",
+        "distanceKm": 10,
+        "date": "2026-11-09",
+        "targetTimeSec": null
+      },
+      "cycleStart": "2026-08-31"
+    }
+  },
+  {
+    "id": "T04-dead-race-reference",
+    "result": {
+      "old": "2026-11-09",
+      "stored": "2026-11-09"
+    }
+  },
+  {
+    "id": "T05-scope-corruption-stale-id",
+    "result": {
+      "active": "race_muocj12i_ft0aq",
+      "race": "race_muocj12i_ft0aq",
+      "scopeGoal": 10
+    }
+  },
+  {
+    "id": "T06-decload-increases-duration",
+    "result": [
+      {
+        "id": "s",
+        "date": "2026-10-01",
+        "oldType": "EASY_RUN",
+        "newType": "EASY_RUN",
+        "newDuration": 7,
+        "oldDuration": 10,
+        "reason": "test"
+      }
+    ]
+  },
+  {
+    "id": "T07-test-excluded-deload",
+    "result": [
+      {
+        "id": "s",
+        "date": "2026-10-01",
+        "oldType": "TEST",
+        "newType": "RECOVERY_RUN",
+        "newDuration": 14,
+        "oldDuration": 20,
+        "reason": "test"
+      }
+    ]
+  },
+  {
+    "id": "T08-pace-rounding",
+    "result": {
+      "pace": "6:00",
+      "invalidDate": false,
+      "negativeDistance": 5
+    }
+  },
+  {
+    "id": "T09-history-walk-run-continuous",
+    "result": {
+      "longestContinuousMinutes": 0,
+      "weeksCompleted": 1,
+      "recentDiscomfortMax": 0,
+      "adherence": 1
+    }
+  },
+  {
+    "id": "T10-readiness-discomfort-gap",
+    "result": [
+      {
+        "discomfort": 3,
+        "result": "CAUTION"
+      },
+      {
+        "discomfort": 4,
+        "result": "CAUTION"
+      },
+      {
+        "discomfort": 5,
+        "result": "STOP"
+      }
+    ]
+  },
+  {
+    "id": "T11-readiness-forgets-last-log",
+    "result": {
+      "level": "STOP",
+      "emoji": "🔴",
+      "label": "Parar / revisar",
+      "reason": "Tu último registro indica molestia por encima de 4/10. No progreses hasta comprobar evolución; valora consultar con un profesional si persiste.",
+      "source": "session"
+    }
+  },
+  {
+    "id": "T12-progress-with-missing-rpe",
+    "result": "MAINTAIN"
+  },
+  {
+    "id": "T13-original-race-scope-isolation",
+    "result": {
+      "newEmpty": true,
+      "oldPreserved": true
+    }
+  },
+  {
+    "id": "T14-new-cycle-history-overwrite",
+    "result": [
+      {
+        "raceId": "race_muocj12z_degth",
+        "sessionId": "same",
+        "result": {
+          "duration": 20
+        }
+      }
+    ]
+  },
+  {
+    "id": "T15-missed-stale-metrics",
+    "result": {
+      "result": {
+        "status": "missed",
+        "loggedAt": "2026-09-30T16:55:11.684Z"
+      },
+      "kpi": 0,
+      "chart": 0
+    }
+  },
+  {
+    "id": "T16-retroactive-review-mutates-history",
+    "result": {
+      "changed": false,
+      "weekEnd": "2026-09-22",
+      "today": "2026-09-30",
+      "adaptedPast": 0
+    }
+  },
+  {
+    "id": "T17-recalc-drops-past-days",
+    "result": 2
+  },
+  {
+    "id": "T18-profile-local-deleted-on-auth",
+    "result": {
+      "before": [
+        "Carrera Inicial 5K Octubre",
+        "Cuenta",
+        "Local child"
+      ],
+      "after": [
+        "Carrera Inicial 5K Octubre",
+        "Cuenta",
+        "Local child"
+      ]
+    }
+  },
+  {
+    "id": "T19-local-unsynced-overwritten",
+    "result": {
+      "name": "offline unsaved",
+      "localName": "offline unsaved"
+    }
+  },
+  {
+    "id": "T20-serialized-coalesced-writes",
+    "result": {
+      "requests": 1,
+      "serverName": "new",
+      "localName": "new"
+    }
+  },
+  {
+    "id": "T21-auth-stale-response",
+    "result": {
+      "session": "B",
+      "active": "B",
+      "name": "B"
+    }
+  },
+  {
+    "id": "T22-logout-hangs-on-network",
+    "result": {
+      "sessionRemains": false,
+      "appDisplay": "none"
+    }
+  },
+  {
+    "id": "T23-new-signup-marker-discards-own-cache",
+    "result": "own recoverable"
+  },
+  {
+    "id": "T24-partial-remote-state-crash",
+    "result": {
+      "stateKeys": [
+        "profile",
+        "goal",
+        "availability",
+        "activities",
+        "limitations",
+        "results",
+        "weights",
+        "planOriginal",
+        "planCurrent",
+        "adaptationLog",
+        "weeklyReviews",
+        "configDirty",
+        "migrationNote",
+        "theme",
+        "checkins",
+        "races",
+        "activeRaceId",
+        "raceCycles",
+        "raceCycleHistory",
+        "racePlans",
+        "athleteHistory",
+        "multiRace",
+        "trainingSystemVersion"
+      ],
+      "theme": "dark"
+    }
+  },
+  {
+    "id": "T25-personal-default-migration",
+    "result": {
+      "weight": 96.85,
+      "limitation": {
+        "id": "lim-1",
+        "area": "rodilla",
+        "label": "Condromalacia rotuliana",
+        "discomfort": 0
+      },
+      "race": "5K objetivo"
+    }
+  },
+  {
+    "id": "T26-severe-limitation-generates-running",
+    "result": [
+      "RUN_WALK",
+      "REST",
+      "RUN_WALK"
+    ]
+  },
+  {
+    "id": "T27-null-race-crashes",
+    "result": true
+  },
+  {
+    "id": "T28-completed-clears-active-future",
+    "result": {
+      "active": null,
+      "status": "completed",
+      "future": 0
+    }
+  },
+  {
+    "id": "T29-edit-race-marks-plan-dirty",
+    "result": {
+      "goalDate": "2027-03-01",
+      "raceDate": "2027-03-01",
+      "scopeDate": "2027-03-01",
+      "planEnd": "2026-11-09",
+      "dirty": true
+    }
+  },
+  {
+    "id": "T30-tests-without-capacity",
+    "result": []
+  },
+  {
+    "id": "T31-target-time-not-pace",
+    "result": {
+      "goal": {
+        "type": "tiempo_objetivo",
+        "targetPaceMinKm": 5,
+        "targetPaceLabel": "5:00",
+        "startDate": "2026-09-11",
+        "distanceKm": 10,
+        "date": "2026-11-20",
+        "targetTimeSec": 3000,
+        "targetPaceSecPerKm": 300
+      },
+      "targetLabel": "50:00"
+    }
+  },
+  {
+    "id": "T32-distance-aware-cycle-horizon",
+    "result": [
+      {
+        "distanceKm": 5,
+        "start": "2027-02-01",
+        "horizon": 56
+      },
+      {
+        "distanceKm": 10,
+        "start": "2027-01-18",
+        "horizon": 70
+      },
+      {
+        "distanceKm": 42.195,
+        "start": "2026-11-09",
+        "horizon": 140
+      }
+    ]
+  }
+]

@@ -1,0 +1,20 @@
+{
+  "name": "made2run",
+  "version": "0.14.2",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "serve": "node scripts/serve.cjs",
+    "test": "npm run test:syntax && npm run test:static && npm run test:engine && npm run test:golden && npm run test:state",
+    "test:syntax": "node --check js/app.js && node --check js/bootstrap/theme.js && node --check js/engine/prescription-engine.js && node --check js/races/multi-race.js && node --check js/state/state-model.js && node --check js/config/supabase.js && node --check js/auth/supabase-auth.js && node --check js/state/persistence.js && node --check js/workouts/workouts.js && node --check js/ui/ui.js && node --check scripts/serve.cjs && node --check tests/browser/mock-server.cjs && node --check tests/browser/smoke.cjs",
+    "test:static": "node tests/static/repository.cjs",
+    "test:engine": "node tests/engine/prescription-matrix.cjs",
+    "test:golden": "node tests/regression/golden-master.cjs",
+    "test:state": "node tests/state/state-auth-regression.cjs",
+    "test:browser": "node tests/browser/smoke.cjs",
+    "test:browser:manual": "node tests/browser/mock-server.cjs"
+  },
+  "devDependencies": {
+    "playwright": "1.55.0"
+  }
+}

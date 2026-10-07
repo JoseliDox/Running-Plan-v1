@@ -1,0 +1,86 @@
+[
+  {
+    "id": "B01-empty",
+    "data": {
+      "welcome": "Bienvenido a Made2RunCrea tu primera carrera para empezar.Crear mi primera carrera",
+      "planVisibleChildren": 0
+    }
+  },
+  {
+    "id": "B02-modal-cancel",
+    "data": [
+      "cancelled A",
+      "confirmed B"
+    ]
+  },
+  {
+    "id": "B03-custom-distance",
+    "data": {
+      "before": 21.0975,
+      "selected": "3",
+      "after": 3,
+      "raceDistance": 3
+    }
+  },
+  {
+    "id": "B04-validation",
+    "data": {
+      "distance": -5,
+      "date": "2020-01-01",
+      "time": -600
+    }
+  },
+  {
+    "id": "B05-xss",
+    "data": {
+      "executed": false
+    }
+  },
+  {
+    "id": "B06-duplicate-ids",
+    "data": []
+  },
+  {
+    "id": "B07-labels",
+    "data": {
+      "unassociated": 67,
+      "total": 70,
+      "clickableDivs": 28
+    }
+  },
+  {
+    "id": "B08-old-chart-caption",
+    "data": "OLD USER 5 km"
+  },
+  {
+    "id": "B09-render-writes",
+    "data": 2
+  },
+  {
+    "id": "B10-complete-keeps-pace",
+    "data": {
+      "type": "completar",
+      "pace": 5.5,
+      "card": "5:30/km"
+    }
+  },
+  {
+    "id": "B11-baseline-console",
+    "data": []
+  },
+  {
+    "id": "B12-result-validation",
+    "data": {
+      "status": "completed",
+      "distance": -10,
+      "duration": -20,
+      "pace": null,
+      "rpe": "99",
+      "discomfort": -3,
+      "sensations": "",
+      "fatigue": "baja",
+      "notes": "",
+      "loggedAt": "2026-09-16T08:26:22.914Z"
+    }
+  }
+]

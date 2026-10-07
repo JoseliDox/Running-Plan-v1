@@ -1,0 +1,221 @@
+{
+  "topLevelFunctionCount": 167,
+  "duplicateTopLevelFunctions": [],
+  "staticIdCount": 67,
+  "duplicateStaticIds": [],
+  "literalIdRefsWithoutDeclaration": [],
+  "lowReferenceFunctions": [
+    {
+      "name": "f12PreparationHorizonDays",
+      "occurrences": 2
+    },
+    {
+      "name": "f12CreateRace",
+      "occurrences": 2
+    },
+    {
+      "name": "f12CompleteRace",
+      "occurrences": 2
+    },
+    {
+      "name": "f12StartNewCycle",
+      "occurrences": 2
+    },
+    {
+      "name": "f12RecordAthleteSession",
+      "occurrences": 2
+    },
+    {
+      "name": "effectiveSessionsPerWeek",
+      "occurrences": 2
+    },
+    {
+      "name": "sessionPattern",
+      "occurrences": 2
+    },
+    {
+      "name": "lerp",
+      "occurrences": 2
+    },
+    {
+      "name": "f141Feasibility",
+      "occurrences": 2
+    },
+    {
+      "name": "f141ProjectedCapability",
+      "occurrences": 2
+    },
+    {
+      "name": "f141TargetWeeklyVolume",
+      "occurrences": 2
+    },
+    {
+      "name": "f141Frequency",
+      "occurrences": 2
+    },
+    {
+      "name": "f141QualityType",
+      "occurrences": 2
+    },
+    {
+      "name": "f141Microcycle",
+      "occurrences": 2
+    },
+    {
+      "name": "f141ArrangeMicrocycle",
+      "occurrences": 2
+    },
+    {
+      "name": "f141AllocateDurations",
+      "occurrences": 2
+    },
+    {
+      "name": "loadUsersStore",
+      "occurrences": 2
+    },
+    {
+      "name": "createUser",
+      "occurrences": 2
+    },
+    {
+      "name": "capabilityRepeat",
+      "occurrences": 1
+    },
+    {
+      "name": "f14UpgradePlanContent",
+      "occurrences": 2
+    },
+    {
+      "name": "mergePlans",
+      "occurrences": 2
+    },
+    {
+      "name": "validateSessionPatch",
+      "occurrences": 2
+    },
+    {
+      "name": "setResult",
+      "occurrences": 2
+    },
+    {
+      "name": "applyImmediateDecision",
+      "occurrences": 2
+    },
+    {
+      "name": "buildWeeklyReviewContext",
+      "occurrences": 2
+    },
+    {
+      "name": "runPendingWeeklyReviews",
+      "occurrences": 2
+    },
+    {
+      "name": "setWeight",
+      "occurrences": 2
+    },
+    {
+      "name": "setCheckin",
+      "occurrences": 2
+    },
+    {
+      "name": "nextUpcomingRunning",
+      "occurrences": 2
+    },
+    {
+      "name": "complementRecommendation",
+      "occurrences": 2
+    },
+    {
+      "name": "f14DifficultyToRpe",
+      "occurrences": 2
+    },
+    {
+      "name": "buildQuickLog",
+      "occurrences": 2
+    },
+    {
+      "name": "renderActiveRace",
+      "occurrences": 2
+    },
+    {
+      "name": "renderRaces",
+      "occurrences": 2
+    },
+    {
+      "name": "renderRing",
+      "occurrences": 2
+    },
+    {
+      "name": "renderEstimate",
+      "occurrences": 2
+    },
+    {
+      "name": "readinessAdvice",
+      "occurrences": 2
+    },
+    {
+      "name": "renderTodayNext",
+      "occurrences": 2
+    },
+    {
+      "name": "renderAdherence",
+      "occurrences": 2
+    },
+    {
+      "name": "renderDirtyBanner",
+      "occurrences": 2
+    },
+    {
+      "name": "renderCalendar",
+      "occurrences": 2
+    },
+    {
+      "name": "periodRange",
+      "occurrences": 2
+    },
+    {
+      "name": "weeklyBucketsForPeriod",
+      "occurrences": 2
+    },
+    {
+      "name": "renderPeriodSelector",
+      "occurrences": 2
+    },
+    {
+      "name": "renderProgressKpis",
+      "occurrences": 2
+    },
+    {
+      "name": "drawStackedBarChart",
+      "occurrences": 2
+    },
+    {
+      "name": "renderFatigueDist",
+      "occurrences": 2
+    },
+    {
+      "name": "renderAdaptationLog",
+      "occurrences": 2
+    },
+    {
+      "name": "renderLegacyHistory",
+      "occurrences": 2
+    },
+    {
+      "name": "hideApp",
+      "occurrences": 2
+    },
+    {
+      "name": "showApp",
+      "occurrences": 2
+    },
+    {
+      "name": "initTabs",
+      "occurrences": 2
+    },
+    {
+      "name": "f13_2_parseRecoveryHash",
+      "occurrences": 2
+    }
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "future": {
+    "oldId": "session_1_2026-10-05_5",
+    "newId": "session_1_2026-10-05_5",
+    "visibleResult": true,
+    "originalResultPreserved": true
+  },
+  "raceDescription": {
+    "planned": {
+      "schemaVersion": 3,
+      "duration": 85,
+      "totalDurationMin": 85,
+      "warmupDurationMin": 10,
+      "mainDurationMin": 70,
+      "recoveryDurationMin": 0,
+      "cooldownDurationMin": 5,
+      "prescription": {
+        "primary": "distance",
+        "durationMin": 85,
+        "distanceKm": 10,
+        "intensity": "effort",
+        "targetPaceMinKm": null,
+        "projectedCapabilityMin": 12.5,
+        "strategy": "caco"
+      },
+      "blocks": [
+        {
+          "role": "warmup",
+          "label": "Calentamiento",
+          "durationSec": 600,
+          "text": "Empieza muy suave y aumenta el movimiento progresivamente.",
+          "mode": "easy"
+        },
+        {
+          "role": "main",
+          "label": "Competición",
+          "durationSec": 4200,
+          "text": "Completa 10 km con la estrategia CaCo entrenada: alterna 8 min corriendo / 1 min caminando desde el inicio.",
+          "distanceKm": 10,
+          "mode": "race",
+          "strategy": "caco"
+        },
+        {
+          "role": "cooldown",
+          "label": "Vuelta a la calma",
+          "durationSec": 300,
+          "text": "Termina caminando o trotando muy suave hasta normalizar la respiración.",
+          "mode": "easy"
+        }
+      ],
+      "warmup": "Empieza muy suave y aumenta el movimiento progresivamente.",
+      "main": "Completa 10 km con la estrategia CaCo entrenada: alterna 8 min corriendo / 1 min caminando desde el inicio.",
+      "cooldown": "Termina caminando o trotando muy suave hasta normalizar la respiración.",
+      "goal": "Objetivo final",
+      "how": "Empieza más despacio de lo que crees necesario y ajusta por sensaciones.",
+      "feel": "El esfuerzo crecerá con la carrera. Debes sentir que reservas energía durante el primer tramo.",
+      "fallback": "Reduce el ritmo o camina antes de que la técnica se deteriore. Detente si aparece dolor que aumenta.",
+      "why": "Con una capacidad continua proyectada de 12.5 min, esta dosis de 85 min trabaja objetivo final en la fase taper para avanzar hacia 10 km sin aumentar todas las variables a la vez.",
+      "surface": "Circuito de la carrera.",
+      "notes": ""
+    },
+    "title": "Carrera"
+  },
+  "delayedLogout": {
+    "session": null,
+    "appDisplay": "none",
+    "active": null
+  }
+}
